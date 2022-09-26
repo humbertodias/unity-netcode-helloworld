@@ -13,16 +13,20 @@
 Server
 
 ```sh
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/humbertodias/unity-netcode-helloworld/main/server.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/humbertodias/unity-netcode-helloworld/main/server.sh)" &
 ```
 
 Client
 
 ```sh
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/humbertodias/unity-netcode-helloworld/main/client.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/humbertodias/unity-netcode-helloworld/main/client.sh)" &
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/humbertodias/unity-netcode-helloworld/main/client.sh)" &
 ```
 
-How to [build](Build.md)
+## Server with two clients
+![](doc/server-2-clients.png)
+
+How to [build](doc/build.md)
 
 ### Ref
 
@@ -30,3 +34,4 @@ How to [build](Build.md)
 * [Unity CommandLineArguments](https://docs.unity.cn/530/Documentation/Manual/CommandLineArguments.html)
 * [Unit GHA](https://isaacbroyles.com/gamedev/2020/07/04/unity-github-actions.html)
 * [Docker unityci](https://hub.docker.com/r/unityci/editor/tags)
+* [Unity platforms](https://docs.unity3d.com/ScriptReference/BuildTarget.html)

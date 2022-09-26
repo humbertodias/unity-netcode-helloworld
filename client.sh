@@ -8,14 +8,20 @@ case "$(uname -s)" in
    Darwin)
      echo 'Mac OS X'
      
-     cd ./StandaloneOSX.app/Contents/MacOS
+     cd StandaloneOSX.app/Contents/MacOS
      chmod +x Unity-Netcode-Hello-World
      ./Unity-Netcode-Hello-World -mlapi client
      
      ;;
 
+     
    Linux)
      echo 'Linux'
+
+     cd StandaloneLinux64
+     chmod +x StandaloneLinux64
+     ./StandaloneLinux64 -mlapi client
+
      ;;
 
    CYGWIN*|MINGW32*|MSYS*|MINGW*)

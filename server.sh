@@ -15,6 +15,11 @@ case "$(uname -s)" in
 
    Linux)
      echo 'Linux'
+
+     cd StandaloneLinux64
+     chmod +x StandaloneLinux64
+     ./StandaloneLinux64 -mlapi server
+
      ;;
 
    CYGWIN*|MINGW32*|MSYS*|MINGW*)
