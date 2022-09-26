@@ -19,8 +19,7 @@ case "$(uname -s)" in
 
      curl -s -L "https://github.com/humbertodias/unity-netcode-helloworld/releases/download/v0.1/StandaloneLinux64.zip" --output StandaloneLinux64.zip
      unzip StandaloneLinux64.zip
-
-     cd StandaloneLinux64
+     rm StandaloneLinux64.zip
      chmod +x StandaloneLinux64
      ./StandaloneLinux64 -mlapi server
 
