@@ -1,13 +1,34 @@
-# unity-netcode-helloworld
-Netcode "Hello World" Project | Unity Multiplayer Networking
+# Netcode "Hello World" Project
+
+[![Build](https://github.com/humbertodias/unity-netcode-helloworld/actions/workflows/main.yml/badge.svg)](https://github.com/humbertodias/unity-netcode-helloworld/actions/workflows/main.yml)
 
 
-Server:
-<Path to Project>/Build/HelloWorld.app/Contents/MacOS/unity-netcode-hello-world -logfile log-server.txt -mlapi server 
+### Tested on
 
-Client:
-<Path to Project>/Build/HelloWorld.app/Contents/MacOS/unity-netcode-hello-world  -logfile log-client.txt -mlapi client
+* Mac OS Monterey
+* Unity 2021.3.10f1
 
+Build
 
-https://docs-multiplayer.unity3d.com/netcode/current/tutorials/helloworld
+```sh
+make -f Makefile.mac build-mac
+```
 
+Server
+
+```sh
+make -f Makefile.mac run-server
+```
+
+Client
+
+```sh
+make -f Makefile.mac run-client
+```
+
+### Ref
+
+* [NetCode HelloWorld Tutorial](https://docs-multiplayer.unity3d.com/netcode/current/tutorials/helloworld)
+* [Unity CommandLineArguments](https://docs.unity.cn/530/Documentation/Manual/CommandLineArguments.html)
+* [Unit GHA](https://isaacbroyles.com/gamedev/2020/07/04/unity-github-actions.html)
+* [Docker unityci](https://hub.docker.com/r/unityci/editor/tags)

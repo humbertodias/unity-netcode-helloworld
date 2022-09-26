@@ -1,0 +1,33 @@
+UNITY_VERSION:=$(shell head -n1 ProjectSettings/ProjectVersion.txt | cut -d':' -f2 | xargs)
+UNITY_APP=/Applications/Unity/Hub/Editor/${UNITY_VERSION}/Unity.app/Contents/MacOS/Unity
+APP_NAME=HelloWorld.app
+USERNAME=TODO
+PASSWORD=TODO
+
+version:
+	echo "UNITY_VERSION:${UNITY_VERSION} \
+\nUNITY_APP:${UNITY_APP}"
+
+unity-license-request:
+	${UNITY_APP} -quit -batchmode -logFile -returnlicense -username "${USERNAME}" -password "${PASSWORD}" 
+
+unity-license-file:
+	${UNITY_APP} -quit -batchmode -logFile -nographics -createManualActivationFile
+
+build-mac:
+	${UNITY_APP} -quit -batchmode -nographics -logFile -projectPath . -buildOSXUniversalPlayer Build/${APP_NAME}
+
+build-linux:
+	${UNITY_APP} -quit -batchmode -nographics -logFile -projectPath . -buildLinux64Player Build/${APP_NAME}
+
+build-windows:
+	${UNITY_APP} -quit -batchmode -nographics -logFile -projectPath . -buildWindows64Player Build/${APP_NAME}
+
+run-server:
+	./Build/${APP_NAME}/Contents/MacOS/Unity-Netcode-Hello-World -logfile server.log -mlapi server &
+
+run-client:
+	./Build/${APP_NAME}/Contents/MacOS/Unity-Netcode-Hello-World -logfile client.log -mlapi client &
+
+clean:
+	rm -rf Build server.log client.log *.alf
