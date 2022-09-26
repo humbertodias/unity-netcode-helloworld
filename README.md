@@ -23,10 +23,9 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/humbertodias/unity-netco
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/humbertodias/unity-netcode-helloworld/main/client.sh)" &
 ```
 
-## Server with two clients
+## Server +2 clients
 ![](doc/server-2-clients.png)
 
-How to [build](doc/build.md)
 
 ### Ref
 
