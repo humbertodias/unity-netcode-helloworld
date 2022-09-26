@@ -1,8 +1,10 @@
-UNITY_VERSION:=$(shell head -n1 ProjectSettings/ProjectVersion.txt | cut -d':' -f2 | xargs)
+PROJETCT_PATH=./unity
+UNITY_VERSION:=$(shell head -n1 ${PROJETCT_PATH}/ProjectSettings/ProjectVersion.txt | cut -d':' -f2 | xargs)
 UNITY_APP=/Applications/Unity/Hub/Editor/${UNITY_VERSION}/Unity.app/Contents/MacOS/Unity
 APP_NAME=HelloWorld.app
 USERNAME=TODO
 PASSWORD=TODO
+
 
 version:
 	echo "UNITY_VERSION:${UNITY_VERSION} \
@@ -15,19 +17,20 @@ unity-license-file:
 	${UNITY_APP} -quit -batchmode -logFile -nographics -createManualActivationFile
 
 build-mac:
-	${UNITY_APP} -quit -batchmode -nographics -logFile -projectPath . -buildOSXUniversalPlayer Build/${APP_NAME}
+	${UNITY_APP} -quit -batchmode -nographics -logFile -projectPath ${PROJETCT_PATH} -buildOSXUniversalPlayer Build/${APP_NAME}
 
 build-linux:
-	${UNITY_APP} -quit -batchmode -nographics -logFile -projectPath . -buildLinux64Player Build/${APP_NAME}
+	${UNITY_APP} -quit -batchmode -nographics -logFile -projectPath ${PROJETCT_PATH} -buildLinux64Player Build/${APP_NAME}
 
 build-windows:
-	${UNITY_APP} -quit -batchmode -nographics -logFile -projectPath . -buildWindows64Player Build/${APP_NAME}
+	${UNITY_APP} -quit -batchmode -nographics -logFile -projectPath ${PROJETCT_PATH} -buildWindows64Player Build/${APP_NAME}
 
 run-server:
-	./Build/${APP_NAME}/Contents/MacOS/Unity-Netcode-Hello-World -logfile server.log -mlapi server &
+	${PROJETCT_PATH}/Build/${APP_NAME}/Contents/MacOS/Unity-Netcode-Hello-World -logfile server.log -mlapi server &
 
 run-client:
-	./Build/${APP_NAME}/Contents/MacOS/Unity-Netcode-Hello-World -logfile client.log -mlapi client &
+	${PROJETCT_PATH}/Build/${APP_NAME}/Contents/MacOS/Unity-Netcode-Hello-World -logfile client.log -mlapi client &
 
 clean:
+	cd ${PROJETCT_PATH} && \
 	rm -rf Build server.log client.log *.alf

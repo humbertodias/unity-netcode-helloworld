@@ -8,23 +8,21 @@
 * Mac OS Monterey
 * Unity 2021.3.10f1
 
-Build
-
-```sh
-make -f Makefile.mac build-mac
-```
+### How to run
 
 Server
 
 ```sh
-make -f Makefile.mac run-server
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/humbertodias/unity-netcode-helloworld/main/server.sh)"
 ```
 
 Client
 
 ```sh
-make -f Makefile.mac run-client
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/humbertodias/unity-netcode-helloworld/main/client.sh)"
 ```
+
+How to [build](Build.md)
 
 ### Ref
 
