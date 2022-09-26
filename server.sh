@@ -1,5 +1,7 @@
 #/bin/bash
-cd /tmp
+
+tmp_dir=$(mktemp -d -t ci-XXXXXXXXXX)
+cd $tmp_dir
 
 case "$(uname -s)" in
 
@@ -33,3 +35,5 @@ case "$(uname -s)" in
      echo 'Unsupported OS' 
      ;;
 esac
+
+rm -rf $tmp_dir
