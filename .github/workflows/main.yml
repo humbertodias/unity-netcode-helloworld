@@ -70,12 +70,12 @@ jobs:
 
       - name: Zip build
         run: |
-          pushd build/${{ matrix.targetPlatform }}
+          pushd unity/build/${{ matrix.targetPlatform }}
           zip -r ../../${{ matrix.targetPlatform }}.zip .
           popd
 
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: ${{ matrix.targetPlatform }}.zip
+          files: unity/${{ matrix.targetPlatform }}.zip
           name: Release ${{ github.ref }}
