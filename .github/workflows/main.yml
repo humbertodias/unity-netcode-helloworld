@@ -18,7 +18,7 @@ jobs:
       fail-fast: false
       matrix:
         unityVersion:
-          - 2021.3.10f1
+          - 2021.3.11f1
         targetPlatform:
           - StandaloneLinux64
           #- StandaloneWindows64
@@ -56,7 +56,7 @@ jobs:
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
-#          unityVersion: ${{ matrix.unityVersion }}
+          unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
 # Dedicated server          
 #          customParameters: -EnableHeadlessMode
