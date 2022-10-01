@@ -30,8 +30,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-#          lfs: true
+          lfs: true
           path: unity
+          ref: main
     
       # Cache
       - uses: actions/cache@v3
