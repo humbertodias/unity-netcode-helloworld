@@ -34,7 +34,7 @@ jobs:
           path: unity
     
       # Cache
-      - uses: actions/cache@v3
+      - uses: actions/cache@v2
         with:
           path: Library
           key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
