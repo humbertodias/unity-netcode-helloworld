@@ -28,11 +28,10 @@ jobs:
 
       # Checkout
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           lfs: true
           path: unity
-          ref: main
     
       # Cache
       - uses: actions/cache@v3
@@ -67,7 +66,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: Build
-          path: build
+          path: unity/build
 
       - name: Zip build
         run: |
