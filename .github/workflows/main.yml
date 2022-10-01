@@ -28,15 +28,15 @@ jobs:
 
       # Checkout
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           lfs: true
-          path: unity
+          path: .
     
       # Cache
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
-          path: Library
+          path: unity/Library
           key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
             Library-
@@ -56,7 +56,7 @@ jobs:
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
-          projectPath: .
+          projectPath: unity
           unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
 # Dedicated server          
