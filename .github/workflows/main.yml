@@ -32,6 +32,7 @@ jobs:
         with:
           lfs: true
           path: unity
+          ref: main
     
       # Cache
       - uses: actions/cache@v3
