@@ -5,6 +5,8 @@ function download_and_run(){
     TYPE="${1:-server}"
     TAG="${2:-v0.1}"
 
+    echo "Downloading $TYPE with tag $TAG"
+
     tmp_dir=$(mktemp -d -t ci-XXXXXXXXXX)
     cd $tmp_dir
 
@@ -51,4 +53,12 @@ function download_and_run(){
 
 }
 
-download_and_run server v0.2
+get_latest_release() {
+  curl --silent "https://api.github.com/repos/$1/releases/latest" | # Get latest release from GitHub api
+    grep '"tag_name":' |                                            # Get tag line
+    sed -E 's/.*"([^"]+)".*/\1/'                                    # Pluck JSON value
+}
+
+LATEST_TAG=$(get_latest_release humbertodias/unity-netcode-helloworld)
+
+download_and_run server $LATEST_TAG
