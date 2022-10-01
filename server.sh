@@ -51,4 +51,4 @@ function download_and_run(){
 
 }
 
-download_and_run server v0.1
+download_and_run server v0.2

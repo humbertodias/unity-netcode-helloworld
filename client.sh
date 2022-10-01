@@ -51,4 +51,4 @@ function download_and_run(){
 
 }
 
-download_and_run client v0.1
+download_and_run client v0.2
