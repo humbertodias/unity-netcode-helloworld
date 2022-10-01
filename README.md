@@ -13,14 +13,14 @@
 Server
 
 ```sh
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/humbertodias/unity-netcode-helloworld/main/server.sh)" &
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/humbertodias/unity-netcode-helloworld/main/run.sh) server"
 ```
 
 Client
 
 ```sh
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/humbertodias/unity-netcode-helloworld/main/client.sh)" &
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/humbertodias/unity-netcode-helloworld/main/client.sh)" &
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/humbertodias/unity-netcode-helloworld/main/run.sh) client" &
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/humbertodias/unity-netcode-helloworld/main/run.sh) client" &
 ```
 
 ## Server +2 clients

@@ -7,6 +7,7 @@ function download_and_run(){
 
     echo "Downloading $TYPE with tag $TAG"
 
+
     tmp_dir=$(mktemp -d -t ci-XXXXXXXXXX)
     cd $tmp_dir
 
@@ -59,6 +60,7 @@ get_latest_release() {
     sed -E 's/.*"([^"]+)".*/\1/'                                    # Pluck JSON value
 }
 
+TYPE="${1:-server}"
 LATEST_TAG=$(get_latest_release humbertodias/unity-netcode-helloworld)
 
-download_and_run client $LATEST_TAG
+download_and_run $TYPE $LATEST_TAG
