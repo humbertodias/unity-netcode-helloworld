@@ -77,5 +77,5 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: build/${{ matrix.targetPlatform }}.zip
+          files: ${{ matrix.targetPlatform }}.zip
           name: Release ${{ github.ref }}
