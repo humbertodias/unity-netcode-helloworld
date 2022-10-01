@@ -56,7 +56,7 @@ jobs:
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
-          unityVersion: ${{ matrix.unityVersion }}
+#          unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
 # Dedicated server          
 #          customParameters: -EnableHeadlessMode
