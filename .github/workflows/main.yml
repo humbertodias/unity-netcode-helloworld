@@ -58,6 +58,8 @@ jobs:
         with:
           unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
+# Dedicated server          
+#          customParameters: -EnableHeadlessMode
 
       # Output 
       - uses: actions/upload-artifact@v2
