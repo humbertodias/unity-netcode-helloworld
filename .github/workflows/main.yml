@@ -66,16 +66,16 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: Build
-          path: unity/build
+          path: build
 
       - name: Zip build
         run: |
-          pushd unity/build/${{ matrix.targetPlatform }}
+          pushd build/${{ matrix.targetPlatform }}
           zip -r ../../${{ matrix.targetPlatform }}.zip .
           popd
 
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: unity/${{ matrix.targetPlatform }}.zip
+          files: build/${{ matrix.targetPlatform }}.zip
           name: Release ${{ github.ref }}
