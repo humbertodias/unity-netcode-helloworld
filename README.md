@@ -13,13 +13,13 @@
 Server
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/humbertodias/unity-netcode-helloworld/main/run.sh | bash -s server
+curl https://raw.githubusercontent.com/humbertodias/unity-netcode-helloworld/main/run.sh | bash -s server
 ```
 
 Client
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/humbertodias/unity-netcode-helloworld/main/run.sh | bash -s client 2
+curl https://raw.githubusercontent.com/humbertodias/unity-netcode-helloworld/main/run.sh | bash -s client 2
 ```
 
 ## Server +2 clients
