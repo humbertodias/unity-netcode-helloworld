@@ -19,8 +19,10 @@ curl -fsSL https://raw.githubusercontent.com/humbertodias/unity-netcode-hellowor
 Client
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/humbertodias/unity-netcode-helloworld/main/run.sh | bash -s client &
-curl -fsSL https://raw.githubusercontent.com/humbertodias/unity-netcode-helloworld/main/run.sh | bash -s client &
+for i in {1..5}; 
+do 
+  curl -fsSL https://raw.githubusercontent.com/humbertodias/unity-netcode-helloworld/main/run.sh | bash -s client &
+done
 ```
 
 ## Server +2 clients
