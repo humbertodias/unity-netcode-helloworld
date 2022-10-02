@@ -61,6 +61,12 @@ get_latest_release() {
 }
 
 TYPE="${1:-server}"
+COUNT="${2:-1}"
 LATEST_TAG=$(get_latest_release humbertodias/unity-netcode-helloworld)
 
-download_and_run $TYPE $LATEST_TAG
+for (( i=1; i<=$COUNT; i++ ))
+do 
+  echo "Instance $i"
+  download_and_run $TYPE $LATEST_TAG &
+done
+
