@@ -28,12 +28,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
           lfs: true
-          path: 'unity'
           sparse-checkout: 'unity'
           sparse-checkout-cone-mode: false
-    
+
       # Cache
       - uses: actions/cache@v3
         with:
