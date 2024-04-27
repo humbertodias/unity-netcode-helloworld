@@ -5,8 +5,8 @@
 
 ### Tested on
 
-* Mac OS Monterey
-* Unity 2021.3.10f1
+* Mac OS Somona
+* Unity 2022.3.23f1
 
 ### How to run
 
