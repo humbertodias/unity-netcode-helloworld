@@ -29,8 +29,8 @@ namespace HelloWorld
             }
         }
 
-        [ServerRpc]
-        void SubmitPositionRequestServerRpc(ServerRpcParams rpcParams = default)
+        [Rpc(SendTo.Server)]
+        void SubmitPositionRequestServerRpc(RpcParams rpcParams = default)
         {
             Position.Value = GetRandomPositionOnPlane();
         }
