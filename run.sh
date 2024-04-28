@@ -41,7 +41,7 @@ download_and_run(){
 
 }
 
-get_latest_release() {
+get_latest_release_tag_name() {
   OWNER=$1
   REPO=$2
   curl --silent "https://api.github.com/repos/$OWNER/$REPO/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/'
@@ -78,7 +78,7 @@ TYPE="${1:-server}"
 COUNT="${2:-1}"
 OWNER="${3:-humbertodias}"
 REPO="${4:-unity-netcode-helloworld}"
-TAG=$(get_latest_release $OWNER $REPO)
+TAG=$(get_latest_release_tag_name $OWNER $REPO)
 
 for (( i=1; i <= $COUNT; i++ ));
 do 
