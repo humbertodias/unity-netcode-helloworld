@@ -1,5 +1,7 @@
 #/bin/bash
 
+set -e
+
 download_and_run(){
     OWNER=$1
     REPO=$2
@@ -11,14 +13,12 @@ download_and_run(){
     case "$(uname -s)" in
     Darwin)
         echo 'Mac OS X'
-
         download_and_unzip $OWNER $REPO $TAG StandaloneOSX
         cd ./StandaloneOSX.app/Contents/MacOS
         chmod +x Unity-Netcode-Hello-World
         ./Unity-Netcode-Hello-World -mode $TYPE -logfile log-$TYPE.txt
         
         ;;
-
     Linux)
         echo 'Linux'
         download_and_unzip $OWNER $REPO $TAG StandaloneLinux64
@@ -26,16 +26,15 @@ download_and_run(){
         ./StandaloneLinux64 -mode $TYPE -logfile log-$TYPE.txt
 
         ;;
-
     CYGWIN*|MINGW32*|MSYS*|MINGW*)
         echo 'MS Windows'
         download_and_unzip $OWNER $REPO $TAG StandaloneWindows
         ./StandaloneWindows.exe -mode $TYPE -logfile log-$TYPE.txt
 
         ;;
-
     *)
-        echo 'Unsupported OS' 
+        echo 'Unsupported OS'
+        exit -1
         ;;
     esac
 
@@ -73,7 +72,6 @@ download_and_unzip() {
 
 }
 
-
 TYPE="${1:-server}"
 COUNT="${2:-1}"
 OWNER="${3:-humbertodias}"
@@ -85,4 +83,3 @@ do
   echo "Instance $i"
   download_and_run $OWNER $REPO $TYPE $TAG &
 done
-
