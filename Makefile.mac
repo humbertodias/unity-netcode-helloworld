@@ -7,7 +7,7 @@ PASSWORD=TODO
 
 
 version:
-	echo "UNITY_VERSION:${UNITY_VERSION} \
+	echo -e "UNITY_VERSION:${UNITY_VERSION} \
 \nUNITY_APP:${UNITY_APP}"
 
 unity-license-request:
