@@ -15,7 +15,7 @@ download_and_run(){
         download_and_unzip $OWNER $REPO $TAG StandaloneOSX
         cd ./StandaloneOSX.app/Contents/MacOS
         chmod +x Unity-Netcode-Hello-World
-        ./Unity-Netcode-Hello-World -mlapi $TYPE
+        ./Unity-Netcode-Hello-World -mode $TYPE -logfile log-$TYPE.txt
         
         ;;
 
@@ -23,7 +23,7 @@ download_and_run(){
         echo 'Linux'
         download_and_unzip $OWNER $REPO $TAG StandaloneLinux64
         chmod +x StandaloneLinux64
-        ./StandaloneLinux64 -mlapi $TYPE
+        ./StandaloneLinux64 -mode $TYPE -logfile log-$TYPE.txt
 
         ;;
 
@@ -31,7 +31,7 @@ download_and_run(){
         echo 'MS Windows'
 
         download_and_unzip $OWNER $REPO $TAG StandaloneWindows
-        ./StandaloneWindows.exe -mlapi $TYPE
+        ./StandaloneWindows.exe -mode $TYPE -logfile log-$TYPE.txt
 
         ;;
 
