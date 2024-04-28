@@ -29,7 +29,6 @@ download_and_run(){
 
     CYGWIN*|MINGW32*|MSYS*|MINGW*)
         echo 'MS Windows'
-
         download_and_unzip $OWNER $REPO $TAG StandaloneWindows
         ./StandaloneWindows.exe -mode $TYPE -logfile log-$TYPE.txt
 
@@ -79,11 +78,11 @@ TYPE="${1:-server}"
 COUNT="${2:-1}"
 OWNER="${3:-humbertodias}"
 REPO="${4:-unity-netcode-helloworld}"
-LATEST_TAG=$(get_latest_release $OWNER $REPO)
+TAG=$(get_latest_release $OWNER $REPO)
 
 for (( i=1; i <= $COUNT; i++ ));
 do 
   echo "Instance $i"
-  download_and_run $OWNER $REPO $TYPE $LATEST_TAG &
+  download_and_run $OWNER $REPO $TYPE $TAG &
 done
 
