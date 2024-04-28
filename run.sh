@@ -1,23 +1,18 @@
 #/bin/bash
 
 download_and_run(){
-
-    TYPE="${1:-server}"
-    TAG="${2:-v0.1}"
+    OWNER=$1
+    REPO=$2
+    TYPE=$3
+    TAG=$4
 
     echo "Downloading $TYPE with tag $TAG"
 
-
-    tmp_dir=$(mktemp -d -t ci-XXXXXXXXXX)
-    cd $tmp_dir
-
     case "$(uname -s)" in
-
     Darwin)
         echo 'Mac OS X'
 
-        curl -s -L --output - "https://github.com/humbertodias/unity-netcode-helloworld/releases/download/${TAG}/StandaloneOSX.zip" | bsdtar -xf-
-
+        download_and_unzip $OWNER $REPO $TAG StandaloneOSX
         cd ./StandaloneOSX.app/Contents/MacOS
         chmod +x Unity-Netcode-Hello-World
         ./Unity-Netcode-Hello-World -mlapi $TYPE
@@ -26,10 +21,7 @@ download_and_run(){
 
     Linux)
         echo 'Linux'
-
-        curl -s -L "https://github.com/humbertodias/unity-netcode-helloworld/releases/download/${TAG}/StandaloneLinux64.zip" --output StandaloneLinux64.zip
-        unzip StandaloneLinux64.zip
-        rm StandaloneLinux64.zip
+        download_and_unzip $OWNER $REPO $TAG StandaloneLinux64
         chmod +x StandaloneLinux64
         ./StandaloneLinux64 -mlapi $TYPE
 
@@ -38,9 +30,7 @@ download_and_run(){
     CYGWIN*|MINGW32*|MSYS*|MINGW*)
         echo 'MS Windows'
 
-        curl -s -L -k "https://github.com/humbertodias/unity-netcode-helloworld/releases/download/${TAG}/StandaloneWindows.zip" --output StandaloneWindows.zip
-        unzip StandaloneWindows.zip
-        rm StandaloneWindows.zip
+        download_and_unzip $OWNER $REPO $TAG StandaloneWindows
         ./StandaloneWindows.exe -mlapi $TYPE
 
         ;;
@@ -50,23 +40,50 @@ download_and_run(){
         ;;
     esac
 
-    rm -rf $tmp_dir
-
 }
 
 get_latest_release() {
-  curl --silent "https://api.github.com/repos/$1/releases/latest" | # Get latest release from GitHub api
-    grep '"tag_name":' |                                            # Get tag line
-    sed -E 's/.*"([^"]+)".*/\1/'                                    # Pluck JSON value
+  OWNER=$1
+  REPO=$2
+  curl --silent "https://api.github.com/repos/$OWNER/$REPO/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/'
 }
+
+download_and_unzip() {
+    OWNER=$1
+    REPO=$2
+    TAG=$3
+    ZIP_FILENAME=$4
+
+    TMP_DIR="/tmp/$OWNER-$REPO-$TAG"
+    if [ ! -d "$TMP_DIR" ]; then 
+        echo "Creating $TMP_DIR"
+        mkdir -p $TMP_DIR
+    else
+        echo "Directory $TMP_DIR already created"
+    fi
+    cd $TMP_DIR
+
+    if ! [ -f "$TMP_DIR/${ZIP_FILENAME}.zip" ]; then
+        URL="https://github.com/${OWNER}/${REPO}/releases/download/${TAG}/${ZIP_FILENAME}.zip"
+        echo "Downloading ${URL}"
+        curl -s -L -k "$URL" --output ${ZIP_FILENAME}.zip
+        unzip $ZIP_FILENAME.zip
+    else
+        echo "File ${ZIP_FILENAME}.zip already downloaded"
+    fi
+
+}
+
 
 TYPE="${1:-server}"
 COUNT="${2:-1}"
-LATEST_TAG=$(get_latest_release humbertodias/unity-netcode-helloworld)
+OWNER="${3:-humbertodias}"
+REPO="${4:-unity-netcode-helloworld}"
+LATEST_TAG=$(get_latest_release $OWNER $REPO)
 
 for (( i=1; i <= $COUNT; i++ ));
 do 
   echo "Instance $i"
-  download_and_run $TYPE $LATEST_TAG &
+  download_and_run $OWNER $REPO $TYPE $LATEST_TAG &
 done
 
