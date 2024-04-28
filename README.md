@@ -1,6 +1,6 @@
-# Netcode "Hello World" Project
-
 [![Build](https://github.com/humbertodias/unity-netcode-helloworld/actions/workflows/main.yml/badge.svg)](https://github.com/humbertodias/unity-netcode-helloworld/actions/workflows/main.yml)
+
+# Netcode "Hello World" Project
 
 
 ### Tested on
